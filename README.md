@@ -1,3 +1,3 @@
 # WebConference
 Aplicação Web para gestão de uma Conferência do Livro da FCA.PT
-Trata-se de testar as suas funcionalidades e dominar o uso do VB
+Trata-se de testar as suas funcionalidades e dominar o uso do VB e outro
