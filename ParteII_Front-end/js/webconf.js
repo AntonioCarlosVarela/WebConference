@@ -229,7 +229,7 @@ contactForm.addEventListener("submit", async function() {
 function myMap() {
 
   // Ponto no mapa a localizar (cidade do Porto)
-  const porto = new google.maps.LatLng(41.14961  , -8.61099)
+  const porto = new google.maps.LatLng(16.863971  , -24.986038)
 
   // Propriedades do mapa
   const mapProp = {
