@@ -29,13 +29,24 @@ window.onload = function() {
       preConfirm: () => {
         const email = document.getElementById('txtEmail').value
         const pass = document.getElementById('txtPass').value
-        return fetch(`${urlBase}/signin`, {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          },          
-          method: "POST",
-          body: `email=${email}&password=${pass}`
-        })
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+        myHeaders.append("Cookie", "connect.sid=s%3Adis9CX7PTXHwPSrXlLXWNK_Ql373YIxw.W8KMZIz%2FFQaw38DP3xK6jE7Zzhi%2B1DI2DudVsco3tU0");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("email", email);
+        urlencoded.append("password", pass);
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: 'follow'
+        };
+
+        fetch("https://fcawebbook.herokuapp.com/signin", requestOptions)
           .then(response => {
             if (!response.ok) {
               throw new Error(response.statusText);
@@ -48,9 +59,8 @@ window.onload = function() {
       },
       allowOutsideClick: () => !swal.isLoading()
     }).then(result => {
-      console.log(result.value)
-      
-      if (result.value.sucesss) {                       
+      //console.log(result.value)   
+      if (result.value) {                       
           swal({title: "Autenticação feita com sucesso!"})
           window.location.replace("admin/participants.html")  
         } else {
@@ -94,6 +104,10 @@ window.onload = function() {
       },
       allowOutsideClick: () => !swal.isLoading()
     }).then(result => {
+
+      //Eliminar a instrução que segue
+      //console.log(result.value)
+
       if (result.value) {               
         if (!result.value.err_code) {
           swal({title: "Inscrição feita com sucesso!"})  
